@@ -64,3 +64,12 @@ ride_sharing.loc[ride_sharing['ride_dt'] > today, 'ride_dt'] = today
 
 # Print maximum of ride_dt column
 print(ride_sharing['ride_dt'].max())
+
+# Find duplicates
+duplicates = ride_sharing.duplicated("ride_id", keep = False)
+
+# Sort your duplicated rides
+duplicated_rides = ride_sharing[duplicates].sort_values(by='ride_id')
+
+# Print relevant columns of duplicated_rides
+print(duplicated_rides[['ride_id','duration','user_birth_year']])
